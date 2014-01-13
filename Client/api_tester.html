@@ -5,10 +5,37 @@
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script>
     $(document).ready(function () {
+		$('#um_register_btn').click(function () {
+			var _data = {
+				"UserName": $('#um_username').val(),
+				"Password": $('#um_password').val(),
+				"ConfirmPassword": $('#um_conformpassword').val()
+			};
+			$.ajax({
+				type: "POST",
+				url: $('#api_url').val() + 'api/Account/Register/',
+				data: JSON.stringify(_data),
+				contentType: "application/json; charset=utf-8",
+				success: function (_d) { alert(JSON.stringify(_d));}
+			}).fail(function (_d) { alert(JSON.stringify(_d));});
+        });
+	    $('#um_get_access_token_btn').click(function () {
+             $.ajax({
+				type: "POST",
+				url: $('#api_url').val() +'Token',
+				data: 'grant_type=password&username=' + $('#um_username_1').val() + '&password=' + $('#um_password_1').val(),
+				contentType: "Content-Type: application/x-www-form-urlencoded",
+				success: function (_d) { $('#um_access_token').val(_d.access_token); }
+			}).fail(function (_d) { alert(JSON.stringify(_d));});
+        });
+		       
         $('#api_get_all_btn').click(function () {
             $.ajax({
                 type: "GET",
                 url: $('#api_url').val() + 'api/values',
+				beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Bearer ' + $('#api_access_token').val());
+                },
                 success: function (_d) { alert(JSON.stringify(_d));}
             }).fail(function (_d) { alert(JSON.stringify(_d)); });
         });
@@ -16,6 +43,9 @@
             $.ajax({
                 type: "GET",
                 url: $('#api_url').val() + 'api/values/?index=' + $('#api_get_one_index').val(),
+				beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Bearer ' + $('#api_access_token').val());
+                },
                 success: function (_d) { alert(JSON.stringify(_d)); }
             }).fail(function (_d) { alert(JSON.stringify(_d)); });
         });
@@ -24,6 +54,9 @@
                 type: "POST",
                 url: $('#api_url').val() + 'api/values/',
                 data: {'':$('#api_add_one_value').val()},
+				beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Bearer ' + $('#api_access_token').val());
+                },
                 success: function (_d) { alert('done'); }
             }).fail(function (_d) { alert(JSON.stringify(_d)); });
         });
@@ -32,6 +65,9 @@
                 type: "PUT",
                 url: $('#api_url').val() + 'api/values/?index=' + $('#api_update_one_index').val(),
 				data: {'':$('#api_update_one_value').val()},
+				beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Bearer ' + $('#api_access_token').val());
+                },
                 success: function (_d) { alert('done'); }
             }).fail(function (_d) { alert(JSON.stringify(_d)); });
         });
@@ -39,6 +75,9 @@
             $.ajax({
                 type: "DELETE",
                 url: $('#api_url').val() + 'api/values/?index=' + $('#api_delete_one_index').val(),
+				beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Bearer ' + $('#api_access_token').val());
+                },
                 success: function (_d) { alert('done'); }
             }).fail(function (_d) { alert(JSON.stringify(_d)); });
         });
@@ -54,8 +93,14 @@ Api Server Url:
 <ul>
     <li>Url: <input placeholder="e.g., http://localhost:49166/" id='api_url' /></li>
 </ul>
+User Management:
+<ul>
+    <li>Registration: <input placeholder="Username" id="um_username"/> <input type="password" placeholder="Password" id="um_password"/> <input type="password" placeholder="Conform Password" id="um_conformpassword"/> <input type="button" value="Register" id="um_register_btn"/></li>
+    <li>Get Access Token: <input placeholder="Username" id="um_username_1"/> <input type="password" placeholder="Password" id="um_password_1"/>  <input type="button" value="Get" id="um_get_access_token_btn"/><input placeholder="Access Token" id="um_access_token"/></li>
+</ul>
 API Endpoints:
 <ul>
+	<li>Access Token: <input placeholder="Required for any api call" id="api_access_token" /></li>
     <li><input type="button" value="Get All" id="api_get_all_btn"/></li>
     <li><input type="button" value="Get One" id="api_get_one_btn"/> : <input placeholder="index" id="api_get_one_index"/></li>
     <li><input type="button" value="Add One" id="api_add_one_btn" /> : <input placeholder="value" id="api_add_one_value" /></li>

@@ -16,9 +16,11 @@ using Microsoft.Owin.Security.OAuth;
 using Skeleton.WebAPI.Models;
 using Skeleton.WebAPI.Providers;
 using Skeleton.WebAPI.Results;
+using System.Web.Http.Cors;
 
 namespace Skeleton.WebAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController

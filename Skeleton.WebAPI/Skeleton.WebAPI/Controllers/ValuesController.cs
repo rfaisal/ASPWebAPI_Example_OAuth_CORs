@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 namespace Skeleton.WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-   // [Authorize]
+    [Authorize]
     public class ValuesController : ApiController
     {
         private static List<string> values = new List<string>();

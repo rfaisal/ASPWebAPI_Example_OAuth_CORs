@@ -192,3 +192,4 @@ C:\cygwin64\home\frahman\repo\github\ASPWebAPI_Example_OAuth_CORs\Skeleton.WebAP
 C:\cygwin64\home\frahman\repo\github\ASPWebAPI_Example_OAuth_CORs\Skeleton.WebAPI\Skeleton.WebAPI\bin\System.Web.Http.Owin.xml
 C:\cygwin64\home\frahman\repo\github\ASPWebAPI_Example_OAuth_CORs\Skeleton.WebAPI\Skeleton.WebAPI\obj\Debug\Skeleton.WebAPI.dll
 C:\cygwin64\home\frahman\repo\github\ASPWebAPI_Example_OAuth_CORs\Skeleton.WebAPI\Skeleton.WebAPI\obj\Debug\Skeleton.WebAPI.pdb
+C:\cygwin64\home\frahman\repo\github\ASPWebAPI_Example_OAuth_CORs\Skeleton.WebAPI\Skeleton.WebAPI\obj\Debug\Skeleton.WebAPI.csprojResolveAssemblyReference.cache
