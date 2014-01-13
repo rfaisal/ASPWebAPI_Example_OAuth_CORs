@@ -15,26 +15,31 @@
         $('#api_get_one_btn').click(function () {
             $.ajax({
                 type: "GET",
-                url: $('#api_url').val() + 'api/values/' + $('#api_get_one_index').val(),
+                url: $('#api_url').val() + 'api/values/?index=' + $('#api_get_one_index').val(),
                 success: function (_d) { alert(JSON.stringify(_d)); }
             }).fail(function (_d) { alert(JSON.stringify(_d)); });
         });
         $('#api_add_one_btn').click(function () {
             $.ajax({
                 type: "POST",
-                url: $('#api_url').val() + '/api/documents/',
+                url: $('#api_url').val() + 'api/values/',
                 data: {'':$('#api_add_one_value').val()},
-                success: function (_d) { alert(JSON.stringify(_d)); }
+                success: function (_d) { alert('done'); }
+            }).fail(function (_d) { alert(JSON.stringify(_d)); });
+        });
+		 $('#api_update_one_btn').click(function () {
+            $.ajax({
+                type: "PUT",
+                url: $('#api_url').val() + 'api/values/?index=' + $('#api_update_one_index').val(),
+				data: {'':$('#api_update_one_value').val()},
+                success: function (_d) { alert('done'); }
             }).fail(function (_d) { alert(JSON.stringify(_d)); });
         });
         $('#api_delete_one_btn').click(function () {
             $.ajax({
                 type: "DELETE",
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Origin", 'http://localhost/');
-                },
-                url: $('#api_url').val() + 'api/values/' + $('#api_delete_one_index').val(),
-                success: function (_d) { alert(JSON.stringify(_d)); }
+                url: $('#api_url').val() + 'api/values/?index=' + $('#api_delete_one_index').val(),
+                success: function (_d) { alert('done'); }
             }).fail(function (_d) { alert(JSON.stringify(_d)); });
         });
         
@@ -49,14 +54,8 @@ Api Server Url:
 <ul>
     <li>Url: <input placeholder="e.g., http://localhost:49166/" id='api_url' /></li>
 </ul>
-User Management:
-<ul>
-    <li>Registration: <input placeholder="Username" id="um_username"/> <input type="password" placeholder="Password" id="um_password"/> <input type="password" placeholder="Conform Password" id="um_conformpassword"/> <input type="button" value="Register" id="um_register_btn"/></li>
-    <li>Get Access Token: <input placeholder="Username" id="um_username_1"/> <input type="password" placeholder="Password" id="um_password_1"/>  <input type="button" value="Get" id="um_get_access_token_btn"/><input placeholder="Access Token" id="um_access_token"/></li>
-</ul>
 API Endpoints:
 <ul>
-    <li>Access Token: <input placeholder="Required for any api call" id="api_access_token" /></li>
     <li><input type="button" value="Get All" id="api_get_all_btn"/></li>
     <li><input type="button" value="Get One" id="api_get_one_btn"/> : <input placeholder="index" id="api_get_one_index"/></li>
     <li><input type="button" value="Add One" id="api_add_one_btn" /> : <input placeholder="value" id="api_add_one_value" /></li>

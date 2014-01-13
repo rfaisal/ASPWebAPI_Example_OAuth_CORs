@@ -16,11 +16,10 @@ namespace Skeleton.WebAPI.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
-            Post("hi");
             return values;
         }
 
-        // GET api/values/5
+        // GET api/values/?index=3
         public string Get(int index)
         {
             return values.ElementAtOrDefault(index);
