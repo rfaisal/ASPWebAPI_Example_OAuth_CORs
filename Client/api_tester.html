@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web API Example</title>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#api_get_all_btn').click(function () {
+            $.ajax({
+                type: "GET",
+                url: $('#api_url').val() + 'api/values',
+                success: function (_d) { alert(JSON.stringify(_d));}
+            }).fail(function (_d) { alert(JSON.stringify(_d)); });
+        });
+        $('#api_get_one_btn').click(function () {
+            $.ajax({
+                type: "GET",
+                url: $('#api_url').val() + 'api/values/' + $('#api_get_one_index').val(),
+                success: function (_d) { alert(JSON.stringify(_d)); }
+            }).fail(function (_d) { alert(JSON.stringify(_d)); });
+        });
+        $('#api_add_one_btn').click(function () {
+            $.ajax({
+                type: "POST",
+                url: $('#api_url').val() + '/api/documents/',
+                data: {'':$('#api_add_one_value').val()},
+                success: function (_d) { alert(JSON.stringify(_d)); }
+            }).fail(function (_d) { alert(JSON.stringify(_d)); });
+        });
+        $('#api_delete_one_btn').click(function () {
+            $.ajax({
+                type: "DELETE",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Origin", 'http://localhost/');
+                },
+                url: $('#api_url').val() + 'api/values/' + $('#api_delete_one_index').val(),
+                success: function (_d) { alert(JSON.stringify(_d)); }
+            }).fail(function (_d) { alert(JSON.stringify(_d)); });
+        });
+        
+    });
+</script>
+</head>
+<body>
+
+<h1>API Tester</h1>
+
+Api Server Url:
+<ul>
+    <li>Url: <input placeholder="e.g., http://localhost:49166/" id='api_url' /></li>
+</ul>
+User Management:
+<ul>
+    <li>Registration: <input placeholder="Username" id="um_username"/> <input type="password" placeholder="Password" id="um_password"/> <input type="password" placeholder="Conform Password" id="um_conformpassword"/> <input type="button" value="Register" id="um_register_btn"/></li>
+    <li>Get Access Token: <input placeholder="Username" id="um_username_1"/> <input type="password" placeholder="Password" id="um_password_1"/>  <input type="button" value="Get" id="um_get_access_token_btn"/><input placeholder="Access Token" id="um_access_token"/></li>
+</ul>
+API Endpoints:
+<ul>
+    <li>Access Token: <input placeholder="Required for any api call" id="api_access_token" /></li>
+    <li><input type="button" value="Get All" id="api_get_all_btn"/></li>
+    <li><input type="button" value="Get One" id="api_get_one_btn"/> : <input placeholder="index" id="api_get_one_index"/></li>
+    <li><input type="button" value="Add One" id="api_add_one_btn" /> : <input placeholder="value" id="api_add_one_value" /></li>
+    <li><input type="button" value="Update One" id="api_update_one_btn" /> :<input placeholder="index" id="api_update_one_index" /><input placeholder="value" id="api_update_one_value" /></li>
+    <li><input type="button" value="Delete One" id="api_delete_one_btn"> : <input placeholder="index" id="api_delete_one_index" /></li>
+</ul>
+
+</body>
+</html>
