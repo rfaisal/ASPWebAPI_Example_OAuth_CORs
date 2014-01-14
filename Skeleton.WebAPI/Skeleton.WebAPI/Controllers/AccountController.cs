@@ -17,9 +17,11 @@ using Skeleton.WebAPI.Models;
 using Skeleton.WebAPI.Providers;
 using Skeleton.WebAPI.Results;
 using System.Web.Http.Cors;
+using Skeleton.WebAPI.Attributes;
 
 namespace Skeleton.WebAPI.Controllers
 {
+    [RequireHttps]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Authorize]
     [RoutePrefix("api/Account")]

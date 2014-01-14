@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Skeleton.WebAPI.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,6 +9,7 @@ using System.Web.Http.Cors;
 
 namespace Skeleton.WebAPI.Controllers
 {
+    [RequireHttps]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Authorize]
     public class ValuesController : ApiController
