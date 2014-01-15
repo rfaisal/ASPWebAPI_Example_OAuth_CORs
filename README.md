@@ -1,4 +1,4 @@
-An Skeleton Project by ASP.NET Web API 2 (oAuth 2.0 and CORs support) 
+An Skeleton Project by ASP.NET Web API 2 (oAuth 2.0 and CORS support) 
 ============================
 
 Discussion Link: 
@@ -7,7 +7,7 @@ Objectives:
 ------------
 
 1. Make a true RESTful Web API (enable CRUD functions by HTTP POST, GET, PUT, and DELETE).
-2. Enable Cross-Origin Requests, i.e., CORs (the API must be accessible from elsewhere like a mobile app).
+2. Enable Cross-Origin Resource Sharing, i.e., CORS (the API must be accessible from elsewhere like a mobile app).
 3. Enable Secure Authorization for API calls (use the OAuth 2.0 authorization framework).
 4. Enable Transport Layer Security, i.e., SSL (reject every non-HTTPS request). 
 
