@@ -1,7 +1,7 @@
 An Skeleton Project by ASP.NET Web API 2 (oAuth 2.0 and CORS support) 
 ============================
 
-Discussion Link: 
+Discussion Link: http://rfaisalblog.wordpress.com/2014/01/14/building-your-own-api-and-securing-it-with-oauth-2-0-in-asp-net-webapi-2/
 
 Objectives:
 ------------
