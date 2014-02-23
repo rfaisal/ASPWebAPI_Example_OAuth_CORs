@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web API Example</title>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#api_get_all_btn').click(function () {
+            $.ajax({
+                type: "GET",
+                url: $('#api_url').val() + 'api/greetings',
+                success: function (_d) { alert(JSON.stringify(_d));}
+            }).fail(function (_d) { alert(JSON.stringify(_d)); });
+        });
+        $('#api_add_one_btn').click(function () {
+            $.ajax({
+                type: "POST",
+                url: $('#api_url').val() + 'api/greetings/',
+                data: {'':$('#api_add_one_value').val()},
+                success: function (_d) { alert('done'); }
+            }).fail(function (_d) { alert(JSON.stringify(_d)); });
+        });
+		 $('#api_update_one_btn').click(function () {
+            $.ajax({
+                type: "PUT",
+                url: $('#api_url').val() + 'api/greetings/?id=' + $('#api_update_one_index').val(),
+				data: {'':$('#api_update_one_value').val()},
+                success: function (_d) { alert('done'); }
+            }).fail(function (_d) { alert(JSON.stringify(_d)); });
+        });
+        $('#api_delete_one_btn').click(function () {
+            $.ajax({
+                type: "DELETE",
+                url: $('#api_url').val() + 'api/greetings/?id=' + $('#api_delete_one_index').val(),
+                success: function (_d) { alert('done'); }
+            }).fail(function (_d) { alert(JSON.stringify(_d)); });
+        });
+        
+    });
+</script>
+</head>
+<body>
+
+<h1>API Tester</h1>
+
+Api Server Url:
+<ul>
+    <li>Url: <input placeholder="e.g., http://localhost:49166/" id='api_url' /></li>
+</ul>
+API Endpoints:
+<ul>
+    <li><input type="button" value="Get All" id="api_get_all_btn"/></li>
+    <li><input type="button" value="Add One" id="api_add_one_btn" /> : <input placeholder="value" id="api_add_one_value" /></li>
+    <li><input type="button" value="Update One" id="api_update_one_btn" /> :<input placeholder="index" id="api_update_one_index" /><input placeholder="value" id="api_update_one_value" /></li>
+    <li><input type="button" value="Delete One" id="api_delete_one_btn"> : <input placeholder="index" id="api_delete_one_index" /></li>
+</ul>
+
+</body>
+</html>
