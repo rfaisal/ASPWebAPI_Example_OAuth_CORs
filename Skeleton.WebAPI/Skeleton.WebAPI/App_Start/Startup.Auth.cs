@@ -55,9 +55,9 @@ namespace Skeleton.WebAPI
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "302232633195011",
+               appSecret: "ec104323e1f57ab37b952e42591da743");
 
             //app.UseGoogleAuthentication();
         }

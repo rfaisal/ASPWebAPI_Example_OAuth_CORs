@@ -15,9 +15,9 @@ namespace Skeleton.WebAPI.Controllers
     {
         private static List<Greeting> values = new List<Greeting>();
         // GET api/values
-        public IEnumerable<Greeting> Get()
+        public Greeting Get()
         {
-            return values;
+            return values[0];
         }
 
         // POST api/values
